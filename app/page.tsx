@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 // import styles from "../styles/Home.module.css";
 interface SpeechRecognition extends EventTarget {
@@ -65,6 +66,8 @@ export default function Home() {
   ]);
   const [input, setInput] = useState<string>("");
   const recognitionRef = useRef<SpeechRecognition| null>(null);
+  const apiKey = process.env.GEMINI_API_KEY;
+
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -150,12 +153,31 @@ useEffect(() => {
   const handleSend = async (customText?: string) => {
     const message = customText || input;
     if (!message.trim()) return;
-
+     const newMessages = [...messages, { sender: "user", text: message }];
+  setMessages(newMessages);
     const userMessage: Message = { text: message, sender: "user" };
     const botMessage: Message = await fetchBotReply(message);
-    setMessages((prev) => [...prev, botMessage, userMessage   ]);
-    setInput("");
+    setMessages((prev) => [...prev, userMessage, botMessage  ]);
+       setInput("")
+
+  } else {
+    const reply = await sendPrompt(message);
+    setMessages([...newMessages, { sender: "bot", text: reply }]);
+  }
   };
+
+
+  const sendPrompt = async (prompt: string): Promise<string> => {
+  try {
+    const response = await axios.post("/api/gemini", { prompt });
+    return response.data.reply;
+  } catch (error) {
+    console.error("Error fetching response from Gemini:", error);
+    return "Sorry, I couldn't process that.";
+  }
+};
+
+
 
 //   const getBotReply = (message: string): Message => {
 //   const text = message.toLowerCase();

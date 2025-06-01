@@ -139,8 +139,6 @@ export default function Home() {
     if (!message.trim()) return;
 
     const userMessage: Message = { text: message, sender: "user" };
-    // setMessages((prev) => [...prev, userMessage]);
-
     const botMessage = await fetchBotReply(message);
     setMessages((prev) => [...prev, userMessage, botMessage]);
     setInput("");

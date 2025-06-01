@@ -142,7 +142,7 @@ export default function Home() {
     setMessages((prev) => [...prev, userMessage]);
 
     const botMessage = await fetchBotReply(message);
-    setMessages((prev) => [...prev, botMessage]);
+    setMessages((prev) => [...prev, userMessage, botMessage]);
     setInput("");
 
   };

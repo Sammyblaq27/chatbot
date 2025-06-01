@@ -134,7 +134,7 @@ export default function Home() {
     }
   };
 
-  const handleSend = async (customText?: string) => {
+  const handleSend = async (customText?: string, event?: React.MouseEvent<HTMLButtonElement>) => {
     const message = customText || input;
     if (!message.trim()) return;
 

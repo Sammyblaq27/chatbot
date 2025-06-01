@@ -237,7 +237,7 @@ export default function Home() {
                 }}
                 placeholder="Type your message..."
               />
-              <button onClick={handleSend} style={{ padding: "8px 12px", cursor: "pointer", color:"blue" }}>
+              <button onClick={()=>handleSend()} style={{ padding: "8px 12px", cursor: "pointer", color:"blue" }}>
                 ➤
               </button>
               <button onClick={startListening} style={{ padding: "8px 12px", cursor: "pointer" }}>

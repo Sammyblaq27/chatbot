@@ -259,11 +259,11 @@ export default function Home() {
               style={{
                 position: "absolute",
                 top: "8px",
-                right: "10px",
+                right: "26px",
                 border: "none",
                 color: 'red',
                 background: "transparent",
-                fontSize: "18px",
+                fontSize: "20px",
                 cursor: "pointer",
                 fontWeight: "bold",
                 zIndex: 1,

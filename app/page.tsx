@@ -163,13 +163,16 @@ export default function Home() {
           <button
             onClick={() => setIsChatOpen(true)}
             style={{
-              padding: "10px 20px",
+              padding: "12px 16px",
               borderRadius: "50%",
               backgroundColor: "#0084ff",
               color: "white",
               border: "none",
-              fontSize: "20px",
+              fontSize: "22px",
               cursor: "pointer",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              transition: "background 0.3s ease",
+
             }}
           >
             💬
@@ -177,22 +180,25 @@ export default function Home() {
         ) : (
           <div
             style={{
-              width: "350px",
+              width: "360px",
               height: "500px",
               backgroundColor: "white",
-              borderRadius: "10px",
-              boxShadow: "0 0 10px rgba(0,0,0,0.2)",
+              borderRadius: "12px",
+              boxShadow: "0 0 20px rgba(0,0,0,0.2)",
               display: "flex",
               flexDirection: "column",
-              fontFamily: "Arial, sans-serif",
+              fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
               overflow: "hidden",
+              position: "relative",
             }}
           >
             <div
               style={{
                 flex: 1,
-                padding: "10px",
+                padding: "13px",
                 overflowY: "auto",
+                backgroundColor: "#f9f9f9",
+
               }}
             >
               {messages.map((msg, idx) => (
@@ -200,13 +206,13 @@ export default function Home() {
                   key={idx}
                   style={{
                     textAlign: msg.sender === "user" ? "right" : "left",
-                    marginBottom: "8px",
+                    marginBottom: "10px",
                   }}
                 >
                   <span
                     style={{
                       display: "inline-block",
-                      padding: "8px 12px",
+                      padding: "8px 10px",
                       borderRadius: "16px",
                       backgroundColor: msg.sender === "user" ? "#0084ff" : "#e5e5ea",
                       color: msg.sender === "user" ? "white" : "black",
@@ -219,7 +225,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div style={{ display: "flex", padding: "10px", borderTop: "1px solid #ccc" }}>
+            <div style={{ display: "flex", padding: "10px", borderTop: "1px solid #ccc",   backgroundColor: "#fff",   gap: "8px", }}>
               <input
                 type="text"
                 value={input}
@@ -229,16 +235,22 @@ export default function Home() {
                   flex: 1,
                   padding: "8px",
                   borderRadius: "4px",
-                  color: 'black',
+                  color: '#333',
+                  outline: "none",
                   border: "#ccc",
+                  fontSize: "14px",
                   marginRight: "8px",
                 }}
                 placeholder="Type your message..."
               />
-              <button onClick={()=>handleSend()} style={{ padding: "8px 12px", cursor: "pointer", color:"blue" }}>
+              <button onClick={()=>handleSend()} style={{ padding: "10px 14px", 
+                cursor: "pointer",
+                color:"blue", 
+                transition: "background 0.3s ease",
+                }}>
                 ➤
               </button>
-              <button onClick={startListening} style={{ padding: "8px 12px", cursor: "pointer" }}>
+              <button onClick={startListening} style={{ padding: "8px 12px", cursor: "pointer",   color: "#333",}}>
                 🎤
               </button>
             </div>
@@ -253,6 +265,9 @@ export default function Home() {
                 background: "transparent",
                 fontSize: "18px",
                 cursor: "pointer",
+                fontWeight: "bold",
+                zIndex: 1,
+
               }}
             >
               ✖
